@@ -8,7 +8,8 @@ router.get('/', async (req, res) => {
   const allCategories = await Category.findAll({
     // be sure to include its associated Products
     include: [{model: Product}]
-  })
+  }); 
+  res.status(200).json(allCategories);
 });
 
 router.get('/:id', async (req, res) => {
@@ -45,6 +46,7 @@ router.delete('/:id', async (req, res) => {
   const deleteCategory = await Category.destroy({
     where: {id: req.params.id}
   });
+  res.status(200).json(deleteCategory);
 });
 
 module.exports = router;
